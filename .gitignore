@@ -1,0 +1,177 @@
+# ============================================================
+# 林有栋 · 个人在线简历 · Git 忽略规则
+# ------------------------------------------------------------
+# 【核心原则】
+#  1. 敏感信息（密钥、Token、凭据、本地私有配置）绝对不入库；
+#  2. 操作系统 / 编辑器 / IDE 自动生成的缓存与元数据不入库；
+#  3. 作品展示相关的资源文件（tankedazhan.zip、sheying_*.jpg、videos/tankedazhan.mp4）
+#     属于简历内容的一部分，保持上传（不在本文件被忽略）；
+#  4. 文档（SECURITY.md、设计文档）公开上传。
+# ============================================================
+
+# ============================================================
+# ① 环境变量 / 本地私有配置（敏感凭据，绝对不入库）
+# ============================================================
+.env
+.env.*
+# 允许公开模板（只放占位符）
+!.env.example
+
+# 纯静态浏览器端的"私有配置"等效替代：
+# 只放占位符的模板公开；真实值的本地副本不入库
+js/config.json
+**/config.json
+# 公开模板保留（字段全为空字符串，无真实值）
+!js/config.example.json
+
+# 密钥 / 私钥 / 证书 / 鉴权凭据文件（任何路径都不入库）
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+*.pub
+.ssh/
+.netrc
+.ssh-agent
+.gitconfig
+.gitconfig.local
+.git-credentials
+.htpasswd
+.htaccess
+.aws/
+.azure/
+.gcp/
+.cloudera/
+.npmrc          # 可能包含私库 authToken
+.yarnrc
+.yarnrc.yml
+.pypirc
+.pip/pip.conf
+.docker/config.json
+.helm/credentials
+
+# ============================================================
+# ② 包管理器与构建产物（Node / Python / 通用构建缓存）
+# ============================================================
+node_modules/
+jspm_packages/
+bower_components/
+.pnp
+.pnp.js
+dist/
+build/
+out/
+target/
+*.pyc
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.egg-info/
+*.egg-info/
+.eggs/
+venv/
+.venv/
+env/
+ENV/
+.conda/
+
+# ============================================================
+# ③ 系统自动生成文件（跨平台）
+# ============================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+System Volume Information/
+*.lnk
+
+# ============================================================
+# ④ 编辑器 / IDE 配置（含用户快捷键、工作区布局、本地路径等）
+# ============================================================
+.vscode/
+.vscode-test/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swo
+*.swp
+*~
+.project
+.classpath
+.settings/
+.gradle/
+.history/
+*.sublime-workspace
+*.sublime-project
+.trae/
+
+# ============================================================
+# ⑤ 日志、临时、调试、崩溃转储文件
+# ============================================================
+*.log
+logs/
+tmp/
+temp/
+cache/
+.cache/
+*.tmp
+*.temp
+*.bak
+*.backup
+*.swp.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+*.core
+*.dmp
+*.crash
+*.stackdump
+
+# ============================================================
+# ⑥ 压缩包：默认不提交（避免误把私有压缩包 / 备份包入库），
+#    但 tankedazhan.zip 是简历作品展示用的"官方下载包"，明确白名单保留
+# ============================================================
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+*.tgz
+# 例外：坦克大战官方游戏下载压缩包（简历作品展示的一部分）
+!tankedazhan.zip
+
+# ============================================================
+# ⑦ 大文件 / GitHub 100MB 单文件硬限制
+# ------------------------------------------------------------
+# GitHub 对单个文件 > 100MB 的普通 git push 会直接拒绝（错误码 GH001：Large file detected）。
+# 本项目 videos/tankedazhan.mp4（坦克大战演示视频 ≈248MB）超过此阈值，因此：
+#   · 仓库内不直接追踪 tankedazhan.mp4 单文件；
+#   · 简历页面在运行时会对 videos/tankedazhan.mp4 做 HEAD 探测，
+#     只有本地存在时才挂载视频播放器（不存在则自动降级为仅显示 8 张截图）；
+#   · 访客需要查看完整演示视频时，通过简历项目页下载 tankedazhan.zip（≈1.7MB，
+#     已在白名单中被追踪，且解压后即可在本地 videos/ 目录获得完整演示视频+游戏本体）。
+# ============================================================
+videos/tankedazhan.mp4
+**/tankedazhan.mp4
+
+# ============================================================
+# ⑧ 其他：本地文档预览缓存、PDF 临时副本、OS 索引
+# ============================================================
+*.~lock.*
+*.lock.json.bak
+.obsidian/
+.stfolder

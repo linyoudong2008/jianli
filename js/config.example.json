@@ -1,0 +1,22 @@
+{
+  "_README": [
+    "【重要安全提示】复制本文件另存为 js/config.json（与本文件同一目录），然后填入真实值。",
+    "js/config.json 已经被项目 .gitignore 明确排除，永远不会进入 Git 提交记录。",
+    "",
+    "【字段说明】",
+    "  当前版本的个人在线简历为纯静态作品，不依赖任何外部 API，因此你可以把下面三个字段",
+    "  全部保留为空字符串。以下三个字段仅作为预占占位，供未来如需接入：",
+    "    · 第三方 AI 服务 API Key（例如翻译、天气、LMI 调用等）",
+    "    · 私有资源的 CDN 鉴权 Token",
+    "    · 任何需要运行时下发但又不能写入 Git 的私密 URL 或凭据",
+    "",
+    "  禁止在任何入库的 .js / .html / .css 文件中以明文硬编码 API Key/Token/Secret/Password/Private Key。",
+    "  一旦需要新增敏感字段，必须按如下两步同步修改：",
+    "    ① 在 js/config.js 的 defaultConfig 对象中添加同名的空字符串占位；",
+    "    ② 在本 config.example.json 中同步添加同名占位与说明字段。",
+    ""
+  ],
+  "EXAMPLE_API_KEY": "",
+  "EXAMPLE_API_ENDPOINT": "",
+  "EXAMPLE_PRIVATE_SERVICE_TOKEN": ""
+}
